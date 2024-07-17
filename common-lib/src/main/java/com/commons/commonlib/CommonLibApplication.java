@@ -1,4 +1,4 @@
-package com.microservices.commonlib;
+package com.commons.commonlib;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

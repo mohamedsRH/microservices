@@ -1,4 +1,4 @@
-package com.microservices.commonlib.service;
+package com.commons.commonlib.service;
 
 import java.util.List;
 

@@ -8,10 +8,10 @@
 		<version>3.3.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.microservices</groupId>
-	<artifactId>common-lib</artifactId>
+	<groupId>com.commons</groupId>
+	<artifactId>commonlib</artifactId>
 	<version>1.0.0</version>
-	<name>common-lib</name>
+	<name>commonlib</name>
 	<description>common-lib</description>
 	<url/>
 	<licenses>
@@ -57,6 +57,29 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<!--to be imported on other projects-->
+							<classifier>app-to-import</classifier>
+							<includes>
+								<include>**/controller/*</include>
+								<include>**/repository/*</include>
+								<include>**/service/*</include>
+								<include>**/model/*</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

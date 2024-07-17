@@ -1,4 +1,4 @@
-package com.microservices.libraraymicroservice;
+package com.microservicesCommon.libraraymicroservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

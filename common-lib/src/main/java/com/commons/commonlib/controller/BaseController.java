@@ -1,6 +1,6 @@
-package com.microservices.commonlib.controller;
+package com.commons.commonlib.controller;
 
-import com.microservices.commonlib.service.BaseService;
+import com.commons.commonlib.service.BaseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

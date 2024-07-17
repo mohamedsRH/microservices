@@ -1,4 +1,4 @@
-package com.microservices.commonlib.reposiory;
+package com.commons.commonlib.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

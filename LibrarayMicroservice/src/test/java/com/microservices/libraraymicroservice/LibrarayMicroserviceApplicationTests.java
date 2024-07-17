@@ -1,4 +1,4 @@
-package com.microservices.libraraymicroservice;
+package com.microservicesCommon.libraraymicroservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
