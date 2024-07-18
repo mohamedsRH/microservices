@@ -1,9 +1,10 @@
 package com.microservices.bookmicroservice.service;
 
-import com.microservices.bookmicroservice.dto.BookDTO;
-import com.microservices.bookmicroservice.dto.LibraryDTO;
+import com.commons.commonlib.dto.BookDTO;
+import com.commons.commonlib.dto.LibraryDTO;
 import com.microservices.bookmicroservice.mapper.BookMapper;
 import com.microservices.bookmicroservice.model.Book;
+import com.microservices.bookmicroservice.model.BookCategory;
 import com.microservices.bookmicroservice.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class BookService implements com.commons.commonlib.service.IBaseService<B
     public BookDTO update(BookDTO bookDTO) {
         Optional<Book> entity = bookRepository.findById ( bookDTO.getId () );
         entity.get ().setName ( bookDTO.getName () );
-        entity.get ().setBookCategory ( bookDTO.getBookCategory () );
+        entity.get ().setBookCategory ( BookCategory.valueOf ( bookDTO.getBookCategory () ) );
         entity.get ().setLibraryId ( bookDTO.getLibrary ().getId () );
         Book book = bookRepository.save ( entity.get () );
         return this.mapToBookDTO ( book );

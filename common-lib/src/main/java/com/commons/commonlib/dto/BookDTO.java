@@ -1,20 +1,19 @@
-package com.microservices.bookmicroservice.dto;
+package com.commons.commonlib.dto;
 
-import com.microservices.bookmicroservice.model.BookCategory;
 import lombok.Getter;
 
 @Getter
 public class BookDTO {
     Long id;
     String name;
-    BookCategory bookCategory;
+    String bookCategory;
     LibraryDTO library;
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setBookCategory(BookCategory bookCategory) {
+    public void setBookCategory(String bookCategory) {
         this.bookCategory = bookCategory;
     }
 

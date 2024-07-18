@@ -1,6 +1,6 @@
 package com.microservices.bookmicroservice.service;
 
-import com.microservices.bookmicroservice.dto.LibraryDTO;
+import com.commons.commonlib.dto.LibraryDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

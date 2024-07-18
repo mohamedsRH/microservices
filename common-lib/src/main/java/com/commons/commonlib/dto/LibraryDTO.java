@@ -1,4 +1,4 @@
-package com.microservices.bookmicroservice.dto;
+package com.commons.commonlib.dto;
 
 import lombok.Getter;
 

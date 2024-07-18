@@ -1,9 +1,8 @@
 package com.microservices.bookmicroservice.service;
 
-import com.microservices.bookmicroservice.dto.LibraryDTO;
+import com.commons.commonlib.dto.LibraryDTO;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,8 +1,9 @@
 package com.microservices.bookmicroservice.mapper;
 
-import com.microservices.bookmicroservice.dto.BookDTO;
-import com.microservices.bookmicroservice.dto.LibraryDTO;
+import com.commons.commonlib.dto.BookDTO;
+import com.commons.commonlib.dto.LibraryDTO;
 import com.microservices.bookmicroservice.model.Book;
+import com.microservices.bookmicroservice.model.BookCategory;
 
 public class BookMapper {
     public static BookDTO toDTO(Book book, LibraryDTO libraryDTO) {
@@ -13,7 +14,7 @@ public class BookMapper {
         BookDTO bookDTO = new BookDTO();
         bookDTO.setId ( book.getId () );
         bookDTO.setName(book.getName());
-        bookDTO.setBookCategory(book.getBookCategory());
+        bookDTO.setBookCategory( String.valueOf ( book.getBookCategory() ) );
         bookDTO.setLibrary(libraryDTO);
         return bookDTO;
     }
@@ -25,7 +26,7 @@ public class BookMapper {
         Book book = new Book();
         book.setId (bookDTO.getId ());
         book.setName(bookDTO.getName());
-        book.setBookCategory(bookDTO.getBookCategory());
+        book.setBookCategory( BookCategory.valueOf ( bookDTO.getBookCategory() ) );
         book.setLibraryId(bookDTO.getLibrary ().getId ());
         return book;
     }
