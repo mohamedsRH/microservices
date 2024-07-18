@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class BookRestTemplateService implements IBookService{
-    private static final String BOOKS_API_URL = "http://localhost:8181/api/books/library/";
+    private static final String BOOKS_API_URL = "http://localhost:8181/books/library/";
 
     private final RestTemplate restTemplate;
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/books")
+@RequestMapping("/books")
 public class BookController extends BaseController<BookDTO,Long> {
     private final BookService baseService;
     protected BookController(BookService baseService) {
