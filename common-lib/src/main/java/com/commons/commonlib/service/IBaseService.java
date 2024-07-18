@@ -2,11 +2,11 @@ package com.commons.commonlib.service;
 
 import java.util.List;
 
-public interface IBaseService<T> {
+public interface IBaseService<T, ID> {
     List<T> findAll();
-    T findById(Long id);
+    T findById(ID id);
     T save(T entity);
 
     T update(T entity);
-    void deleteById(Long id);
+    void deleteById(ID id);
 }

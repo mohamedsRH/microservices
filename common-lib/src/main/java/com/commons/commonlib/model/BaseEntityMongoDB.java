@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Getter
 public class BaseEntityMongoDB {
     @Id
-    @Field("_id")
     private String id;
 
     @CreatedDate

@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public abstract class BaseController<T> {
-    private final IBaseService<T> baseService;
+public abstract class BaseController<T, ID> {
+    private final IBaseService<T, ID> baseService;
 
-    protected BaseController(IBaseService<T> baseService) {
+    protected BaseController(IBaseService<T, ID> baseService) {
         this.baseService = baseService;
     }
 
@@ -19,7 +19,7 @@ public abstract class BaseController<T> {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<T> getById(@PathVariable Long id) {
+    public ResponseEntity<T> getById(@PathVariable ID id) {
         T entity = baseService.findById(id);
         return ResponseEntity.ok(entity);
     }
@@ -30,12 +30,12 @@ public abstract class BaseController<T> {
     }
 
     @PutMapping("/{id}")
-    public T update(@PathVariable Long id, @RequestBody T entity) {
+    public T update(@PathVariable ID id, @RequestBody T entity) {
         return baseService.save(entity);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable ID id) {
         baseService.deleteById(id);
     }
 }

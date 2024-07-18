@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/libraries")
-public class LibraryController extends BaseController<Library> {
+public class LibraryController extends BaseController<Library,String> {
     protected LibraryController(LibraryService libraryService) {
         super ( libraryService );
     }

@@ -1,41 +1,62 @@
 package com.microservices.bookmicroservice.service;
 
+import com.microservices.bookmicroservice.dto.BookDTO;
+import com.microservices.bookmicroservice.dto.LibraryDTO;
+import com.microservices.bookmicroservice.mapper.BookMapper;
 import com.microservices.bookmicroservice.model.Book;
 import com.microservices.bookmicroservice.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
-public class BookService implements com.commons.commonlib.service.IBaseService<Book>{
+public class BookService implements com.commons.commonlib.service.IBaseService<BookDTO,Long>{
 
     private final BookRepository bookRepository;
+    private final ILibraryService libraryService;
 
     @Override
-    public List<Book> findAll() {
-        return bookRepository.findAll ();
+    public List<BookDTO> findAll() {
+        List<Book> books = bookRepository.findAll ();
+        return books.stream().map ( this::mapToBookDTO ).collect( Collectors.toList());
     }
 
     @Override
-    public Book findById(Long id) {
-        return bookRepository.findById ( id ).get ();
+    public BookDTO findById(Long id) {
+        Optional<Book> book =  bookRepository.findById ( id );
+        System.out.println ("book entity"+book.get ());
+        System.out.println ("book dto"+this.mapToBookDTO ( book.get () ));
+        return this.mapToBookDTO ( book.get () );
     }
 
     @Override
-    public Book save(Book entity) {
-        System.out.println ("book :"+entity);
-        return bookRepository.save ( entity );
+    public BookDTO save(BookDTO bookDTO) {
+        Book entity = BookMapper.toEntity ( bookDTO );
+        Book book = bookRepository.save ( entity );
+        return this.mapToBookDTO ( book );
     }
 
     @Override
-    public Book update(Book entity) {
-        return bookRepository.save ( entity );
+    public BookDTO update(BookDTO bookDTO) {
+        Optional<Book> entity = bookRepository.findById ( bookDTO.getId () );
+        entity.get ().setName ( bookDTO.getName () );
+        entity.get ().setBookCategory ( bookDTO.getBookCategory () );
+        entity.get ().setLibraryId ( bookDTO.getLibrary ().getId () );
+        Book book = bookRepository.save ( entity.get () );
+        return this.mapToBookDTO ( book );
     }
 
     @Override
     public void deleteById(Long id) {
         bookRepository.deleteById ( id );
+    }
+
+    private BookDTO mapToBookDTO(Book book){
+        LibraryDTO libraryDTO = libraryService.getLibraryById ( book.getLibraryId () );
+        return BookMapper.toDTO ( book,libraryDTO );
     }
 }

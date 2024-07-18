@@ -7,10 +7,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class LibraryService implements IBaseService<Library> {
+public class LibraryService implements IBaseService<Library,String> {
 
     private final LibraryRepository libraryRepository;
 
@@ -20,8 +21,9 @@ public class LibraryService implements IBaseService<Library> {
     }
 
     @Override
-    public Library findById(Long id) {
-        return libraryRepository.findById ( String.valueOf ( id ) ).get ();
+    public Library findById(String id) {
+        Optional<Library> library = libraryRepository.findById ( id );
+        return library.get ();
     }
 
     @Override
@@ -35,7 +37,7 @@ public class LibraryService implements IBaseService<Library> {
     }
 
     @Override
-    public void deleteById(Long id) {
-        libraryRepository.deleteById (String.valueOf ( id )  );
+    public void deleteById(String id) {
+        libraryRepository.deleteById ( id  );
     }
 }
