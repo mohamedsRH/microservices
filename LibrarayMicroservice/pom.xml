@@ -60,6 +60,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.commons</groupId>
+            <artifactId>commonlib</artifactId>
+            <version>1.0.0</version>
+            <classifier>app-to-import</classifier>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

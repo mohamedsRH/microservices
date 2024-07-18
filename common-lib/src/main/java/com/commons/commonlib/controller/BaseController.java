@@ -1,15 +1,15 @@
 package com.commons.commonlib.controller;
 
-import com.commons.commonlib.service.BaseService;
+import com.commons.commonlib.service.IBaseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 public abstract class BaseController<T> {
-    private final BaseService<T> baseService;
+    private final IBaseService<T> baseService;
 
-    protected BaseController(BaseService<T> baseService) {
+    protected BaseController(IBaseService<T> baseService) {
         this.baseService = baseService;
     }
 

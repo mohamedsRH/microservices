@@ -1,14 +1,15 @@
 package com.commons.commonlib.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-public abstract  class BaseEntity implements Serializable {
+@Getter
+public abstract  class BaseEntityMySQL implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -22,4 +23,15 @@ public abstract  class BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

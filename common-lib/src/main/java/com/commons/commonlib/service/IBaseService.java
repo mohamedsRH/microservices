@@ -2,7 +2,7 @@ package com.commons.commonlib.service;
 
 import java.util.List;
 
-public interface BaseService<T> {
+public interface IBaseService<T> {
     List<T> findAll();
     T findById(Long id);
     T save(T entity);

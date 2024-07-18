@@ -72,7 +72,6 @@
 							<classifier>app-to-import</classifier>
 							<includes>
 								<include>**/controller/*</include>
-								<include>**/repository/*</include>
 								<include>**/service/*</include>
 								<include>**/model/*</include>
 							</includes>
