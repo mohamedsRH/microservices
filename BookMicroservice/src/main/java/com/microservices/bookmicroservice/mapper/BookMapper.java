@@ -5,6 +5,9 @@ import com.commons.commonlib.dto.LibraryDTO;
 import com.microservices.bookmicroservice.model.Book;
 import com.microservices.bookmicroservice.model.BookCategory;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class BookMapper {
     public static BookDTO toDTO(Book book, LibraryDTO libraryDTO) {
         if (book == null) {
@@ -29,5 +32,10 @@ public class BookMapper {
         book.setBookCategory( BookCategory.valueOf ( bookDTO.getBookCategory() ) );
         book.setLibraryId(bookDTO.getLibrary ().getId ());
         return book;
+    }
+    public static List<BookDTO> toDTOList(List<Book> books, LibraryDTO libraryDTO) {
+        return books.stream()
+                .map(book -> toDTO(book, libraryDTO))
+                .collect( Collectors.toList());
     }
 }

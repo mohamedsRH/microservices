@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
-public class BookService implements com.commons.commonlib.service.IBaseService<BookDTO,Long>{
+public class BookService implements IBookService{
 
     private final BookRepository bookRepository;
     private final ILibraryService libraryService;
@@ -59,5 +59,11 @@ public class BookService implements com.commons.commonlib.service.IBaseService<B
     private BookDTO mapToBookDTO(Book book){
         LibraryDTO libraryDTO = libraryService.getLibraryById ( book.getLibraryId () );
         return BookMapper.toDTO ( book,libraryDTO );
+    }
+
+    @Override
+    public List<BookDTO> findBooksByLibraryId(String id) {
+        List<Book> books = bookRepository.findBooksByLibraryId ( id );
+        return BookMapper.toDTOList ( books,null );
     }
 }

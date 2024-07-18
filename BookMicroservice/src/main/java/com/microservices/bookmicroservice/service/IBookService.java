@@ -1,6 +1,11 @@
 package com.microservices.bookmicroservice.service;
 
+import com.commons.commonlib.dto.BookDTO;
+import com.commons.commonlib.service.IBaseService;
 import com.microservices.bookmicroservice.model.Book;
 
-public interface IBookService extends com.commons.commonlib.service.IBaseService<Book,Long> {
+import java.util.List;
+
+public interface IBookService extends IBaseService<BookDTO,Long> {
+    List<BookDTO> findBooksByLibraryId(String id);
 }
