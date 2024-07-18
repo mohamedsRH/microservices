@@ -18,7 +18,9 @@ public class BookMapper {
         bookDTO.setId ( book.getId () );
         bookDTO.setName(book.getName());
         bookDTO.setBookCategory( String.valueOf ( book.getBookCategory() ) );
-        bookDTO.setLibrary(libraryDTO);
+        if(libraryDTO!=null){
+            bookDTO.setLibrary(libraryDTO);
+        }
         return bookDTO;
     }
 
@@ -30,7 +32,9 @@ public class BookMapper {
         book.setId (bookDTO.getId ());
         book.setName(bookDTO.getName());
         book.setBookCategory( BookCategory.valueOf ( bookDTO.getBookCategory() ) );
-        book.setLibraryId(bookDTO.getLibrary ().getId ());
+        if(bookDTO.getLibrary ()!=null){
+            book.setLibraryId(bookDTO.getLibrary ().getId ());
+        }
         return book;
     }
     public static List<BookDTO> toDTOList(List<Book> books, LibraryDTO libraryDTO) {
