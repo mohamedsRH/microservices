@@ -1,5 +1,6 @@
 package com.microservices.libraraymicroservice.controller;
 
+import com.commons.commonlib.controller.BaseCommandController;
 import com.commons.commonlib.controller.BaseController;
 import com.commons.commonlib.dto.LibraryDTO;
 import com.microservices.libraraymicroservice.model.Library;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/libraries")
-public class LibraryController extends BaseController<LibraryDTO,String> {
+public class LibraryController extends BaseCommandController<LibraryDTO,String> {
     protected LibraryController(LibraryService libraryService) {
         super ( libraryService );
     }

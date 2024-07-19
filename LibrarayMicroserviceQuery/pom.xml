@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.microservices</groupId>
-    <artifactId>LibrarayMicroservice</artifactId>
+    <artifactId>LibrarayMicroserviceQuery</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>LibrarayMicroservice</name>
-    <description>LibrarayMicroservice</description>
+    <name>LibrarayMicroserviceQuery</name>
+    <description>LibrarayMicroservice for queries</description>
     <url/>
     <licenses>
         <license/>
