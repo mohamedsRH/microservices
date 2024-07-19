@@ -29,4 +29,14 @@ public class BookController extends BaseQueryController<BookDTO,Long> {
         return baseService.findBooksByLibraryId ( id );
     }
 
+    @GetMapping("/sync/{id}")
+    BookDTO findByIdSync(@PathVariable Long id){
+        return baseService.findByIdSync ( id );
+    }
+
+    @GetMapping("/sync")
+    List<BookDTO> findBooksSync(){
+        return baseService.findAllSync();
+    }
+
 }

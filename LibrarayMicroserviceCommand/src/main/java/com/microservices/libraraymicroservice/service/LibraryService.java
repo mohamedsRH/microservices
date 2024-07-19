@@ -48,9 +48,11 @@ public class LibraryService implements ICommandService<LibraryDTO,String> {
 
     @Override
     public void deleteById(String id) {
-        Library entity = libraryRepository.findById(id).get();
-        LibraryDTO libraryDTO = LibraryMapper.toDTO(entity,null);
-        kafkaProducer.produceEvent(new LibraryEvent(EventType.DELETED_LIBRARY_EVENT, libraryDTO, LocalDateTime.now()));
-        libraryRepository.deleteById ( id  );
+        Optional<Library> entity = libraryRepository.findById(id);
+        if(entity.isPresent()){
+            LibraryDTO libraryDTO = LibraryMapper.toDTO(entity.get(),null);
+            kafkaProducer.produceEvent(new LibraryEvent(EventType.DELETED_LIBRARY_EVENT, libraryDTO, LocalDateTime.now()));
+            libraryRepository.deleteById ( id  );
+        }
     }
 }

@@ -7,7 +7,7 @@ import com.microservices.libraraymicroservice.model.Library;
 import java.util.List;
 
 public class LibraryMapper {
-    public static LibraryDTO toDTO(Library library, List<BookDTO> bookDTOList){
+    public static LibraryDTO toDTO(Library library){
         if (library == null) {
             return null;
         }
@@ -15,7 +15,7 @@ public class LibraryMapper {
         libraryDTO.setId ( library.getId () );
         libraryDTO.setLocation ( library.getLocation () );
         libraryDTO.setName ( library.getName () );
-        libraryDTO.setBooks ( bookDTOList );
+        libraryDTO.setBooks ( library.getBooks() );
         return libraryDTO;
     }
     public static Library toEntity(LibraryDTO libraryDTO ){

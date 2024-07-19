@@ -22,16 +22,15 @@ import java.util.stream.Collectors;
 public class BookService implements IBookService{
 
     private final BookRepository bookRepository;
-    private final ILibraryService libraryService;
     private final KafkaProducer kafkaProducer;
 
     @Override
     public BookDTO save(BookDTO bookDTO) {
         Book entity = BookMapper.toEntity ( bookDTO );
         Book book = bookRepository.save ( entity );
-        BookDTO bookDTO1 = this.mapToBookDTO ( book );
-        kafkaProducer.produceEvent(new Event(EventType.CREATED_BOOK_EVENT, bookDTO1, LocalDateTime.now()));
-        return bookDTO1;
+        bookDTO.setId(book.getId());
+        kafkaProducer.produceEvent(new Event(EventType.CREATED_BOOK_EVENT, bookDTO, LocalDateTime.now()));
+        return bookDTO;
     }
 
     @Override
@@ -55,7 +54,6 @@ public class BookService implements IBookService{
     }
 
     private BookDTO mapToBookDTO(Book book){
-        LibraryDTO libraryDTO = libraryService.getLibraryById ( book.getLibraryId () );
-        return BookMapper.toDTO ( book,libraryDTO );
+        return BookMapper.toDTO ( book,null );
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class KafkaConsumer {
 
-    private final LibraryEventHandler bookEventHandler;
+    private final LibraryEventHandler libraryEventHandler;
     private final String topic = "LIBRARY_EVENT_TOPIC";
 
     @KafkaListener(topics = topic, groupId = "book-group")
@@ -20,13 +20,13 @@ public class KafkaConsumer {
 
         switch (consumerRecord.key()) {
             case "CREATED_LIBRARY_EVENT":
-                bookEventHandler.handleBookCreatedEvent(event.libraryDTO());
+                libraryEventHandler.handleLibraryCreatedEvent(event.libraryDTO());
                 break;
             case "UPDATED_LIBRARY_EVENT":
-                bookEventHandler.handleBookUpdatedEvent(event.libraryDTO());
+                libraryEventHandler.handleLibraryUpdatedEvent(event.libraryDTO());
                 break;
             case "DELETED_LIBRARY_EVENT":
-                bookEventHandler.handleBookDeletedEvent(event.libraryDTO().getId());
+                libraryEventHandler.handleLibraryDeletedEvent(event.libraryDTO().getId());
                 break;
             default:
                 break;

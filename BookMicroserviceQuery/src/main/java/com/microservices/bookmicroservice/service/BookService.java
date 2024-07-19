@@ -23,15 +23,15 @@ public class BookService implements IBookService{
     @Override
     public List<BookDTO> findAll() {
         List<Book> books = bookRepository.findAll ();
-        return books.stream().map ( this::mapToBookDTO ).collect( Collectors.toList());
+        return books.stream().map(book -> {
+            return BookMapper.toDTO(book,null);
+        }).collect(Collectors.toList());
     }
 
     @Override
     public BookDTO findById(Long id) {
         Optional<Book> book =  bookRepository.findById ( id );
-        System.out.println ("book entity"+book.get ());
-        System.out.println ("book dto"+this.mapToBookDTO ( book.get () ));
-        return this.mapToBookDTO ( book.get () );
+        return BookMapper.toDTO(book.get (),null);
     }
 
     private BookDTO mapToBookDTO(Book book){
@@ -43,5 +43,17 @@ public class BookService implements IBookService{
     public List<BookDTO> findBooksByLibraryId(String id) {
         List<Book> books = bookRepository.findBooksByLibraryId ( id );
         return BookMapper.toDTOList ( books,null );
+    }
+
+    @Override
+    public BookDTO findByIdSync(Long id) {
+        Optional<Book> book =  bookRepository.findById ( id );
+        return this.mapToBookDTO ( book.get () );
+    }
+
+    @Override
+    public List<BookDTO> findAllSync() {
+        List<Book> books = bookRepository.findAll ();
+        return books.stream().map ( this::mapToBookDTO ).collect( Collectors.toList());
     }
 }

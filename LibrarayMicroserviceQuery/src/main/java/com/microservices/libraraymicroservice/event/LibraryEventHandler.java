@@ -12,17 +12,17 @@ import org.springframework.stereotype.Service;
 public class LibraryEventHandler {
     private final LibraryRepository libraryRepository;
 
-    public void handleBookCreatedEvent(LibraryDTO libraryDTO) {
+    public void handleLibraryCreatedEvent(LibraryDTO libraryDTO) {
         Library entity = LibraryMapper.toEntity(libraryDTO);
         libraryRepository.save(entity);
     }
 
-    public void handleBookUpdatedEvent(LibraryDTO libraryDTO) {
+    public void handleLibraryUpdatedEvent(LibraryDTO libraryDTO) {
         Library entity = LibraryMapper.toEntity(libraryDTO);
         libraryRepository.save(entity);
     }
 
-    public void handleBookDeletedEvent(String id) {
+    public void handleLibraryDeletedEvent(String id) {
         libraryRepository.deleteById(id);
     }
 }

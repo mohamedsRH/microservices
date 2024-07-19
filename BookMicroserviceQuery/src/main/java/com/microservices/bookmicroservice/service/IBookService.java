@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface IBookService extends IQueryService<BookDTO,Long> {
     List<BookDTO> findBooksByLibraryId(String id);
+    public BookDTO findByIdSync(Long id);
+    public List<BookDTO> findAllSync();
 }
