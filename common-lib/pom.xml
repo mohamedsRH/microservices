@@ -75,6 +75,7 @@
 								<include>**/dto/*</include>
 								<include>**/service/*</include>
 								<include>**/model/*</include>
+								<include>**/event/*</include>
 							</includes>
 						</configuration>
 					</execution>

@@ -1,6 +1,8 @@
 package com.microservices.bookmicroservice.controller;
 
+import com.commons.commonlib.controller.BaseCommandController;
 import com.commons.commonlib.controller.BaseController;
+import com.commons.commonlib.controller.BaseQueryController;
 import com.commons.commonlib.dto.BookDTO;
 import com.commons.commonlib.service.IBaseService;
 import com.microservices.bookmicroservice.service.BookService;
@@ -14,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/books")
-public class BookController extends BaseController<BookDTO,Long> {
+public class BookController extends BaseQueryController<BookDTO,Long> {
     private final BookService baseService;
     protected BookController(BookService baseService) {
         super ( baseService );
