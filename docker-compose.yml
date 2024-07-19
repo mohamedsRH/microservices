@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: config-server
     ports:
-      - "8888:8888"
+      - "8484:8484"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
     networks:
@@ -33,7 +33,7 @@ services:
       dockerfile: Dockerfile
     container_name: api-gateway
     ports:
-      - "8080:8080"
+      - "8089:8089"
     depends_on:
       - config-server
       - eureka-server
@@ -64,7 +64,7 @@ services:
   library-microservice:
     image: library-microservice:latest
     build:
-      context: ./LibraryMicroservice
+      context: ./LibrarayMicroservice
       dockerfile: Dockerfile
     container_name: library-microservice
     depends_on:
