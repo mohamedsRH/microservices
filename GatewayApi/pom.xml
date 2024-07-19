@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>com.ms</groupId>
 	<artifactId>GatewayApi</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
 	<name>GatewayApi</name>
 	<description>GatewayApi</description>
 	<url/>
