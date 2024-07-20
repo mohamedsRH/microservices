@@ -88,5 +88,4 @@ services:
 
 networks:
   microservices-network:
-    name: microservices-network
-    driver: bridge
+    external: true

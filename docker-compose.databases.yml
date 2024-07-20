@@ -69,7 +69,7 @@ services:
       DB_USER: keycloak
       DB_PASSWORD: keycloakpassword
     ports:
-      - "8088:8080"
+      - "8080:8080"
     depends_on:
       - postgres
     networks:
@@ -93,8 +93,7 @@ services:
 
 networks:
   microservices-network:
-    name: microservices-network
-    driver: bridge
+    external: true
 
 volumes:
   mysql-data:
