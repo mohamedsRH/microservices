@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  book-microservice-command:
+    image: book-microservice-command:latest
+    build:
+      context: ./BookMicroserviceCommand
+      dockerfile: Dockerfile
+    container_name: book-microservice-command
+    ports:
+      - "8181:8181"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8484
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=bookMicroserviceCommand
+      - DB_USERNAME=bookuser
+      - DB_PASSWORD=bookpassword
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  book-microservice-query:
+    image: book-microservice-query:latest
+    build:
+      context: ./BookMicroserviceQuery
+      dockerfile: Dockerfile
+    container_name: book-microservice-query
+    ports:
+      - "8182:8182"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8484
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=bookMicroserviceQuery
+      - DB_USERNAME=bookuser
+      - DB_PASSWORD=bookpassword
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  library-microservice-command:
+    image: library-microservice-command:latest
+    build:
+      context: ./LibrarayMicroserviceCommand
+      dockerfile: Dockerfile
+    container_name: library-microservice-command
+    ports:
+      - "8282:8282"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8484
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - DB_NAME=libraryMicroserviceCommand
+      - DB_HOST=mongodb
+      - MONGO_URL=mongodb://mongodb:27017/libraryMicroserviceCommand
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    restart: unless-stopped
+    networks:
+      - microservices-network
+
+  library-microservice-query:
+    image: library-microservice-query:latest
+    build:
+      context: ./LibrarayMicroserviceQuery
+      dockerfile: Dockerfile
+    container_name: library-microservice-query
+    ports:
+      - "8283:8283"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8484
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - DB_NAME=libraryMicroserviceCommand
+      - DB_HOST=mongodb
+      - MONGO_URL=mongodb://mongodb:27017/libraryMicroserviceCommand
+      - BOOK_QUERY_MICROSERVICE_URL=http://book-microservice-query:8182
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    restart: unless-stopped
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    name: microservices-network
+    driver: bridge

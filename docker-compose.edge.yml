@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  config-server:
+    image: config-server:latest
+    build:
+      context: ./ConfigServer
+      dockerfile: Dockerfile
+    container_name: config-server
+    ports:
+      - "8484:8484"
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  eureka-server:
+    image: eureka-server:latest
+    build:
+      context: ./ServiceDiscovery
+      dockerfile: Dockerfile
+    container_name: eureka-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8484
+    depends_on:
+      - config-server
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  api-gateway:
+    image: api-gateway:latest
+    build:
+      context: ./GatewayApi
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8484
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    ports:
+      - "8089:8089"
+    depends_on:
+      - config-server
+      - eureka-server
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+networks:
+  microservices-network:
+    name: microservices-network
+    driver: bridge

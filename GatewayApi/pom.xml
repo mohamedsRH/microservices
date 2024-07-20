@@ -76,6 +76,17 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-oauth2-client</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.commons</groupId>
+			<artifactId>commonlib</artifactId>
+			<version>1.0.0</version>
+			<classifier>app-to-import</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
